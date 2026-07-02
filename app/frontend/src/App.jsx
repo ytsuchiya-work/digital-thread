@@ -34,7 +34,7 @@ export default function App() {
         <h1>🧵 デジタルスレッド分析プラットフォーム</h1>
         <div className="subtitle">
           商品開発工程（設計変更 → 製造ロット → 品質）とサプライチェーン（受注 → 調達 → 在庫 → 出荷 → 保守）を
-          Unity Catalog（<code>{config?.schema ?? '...'}</code>）上で一元管理するNEXT-K構想デモ
+          Unity Catalog（<code>{config?.schema ?? '...'}</code>）上で一元管理するデジタルスレッド・デモ
         </div>
         <div className="tabs">
           {TABS.map((t) => (
