@@ -1,0 +1,13 @@
+command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+env:
+  - name: DATABRICKS_WAREHOUSE_ID
+    valueFrom: sql-warehouse
+  - name: SERVING_ENDPOINT
+    valueFrom: serving-endpoint
+  - name: DASHBOARD_ID
+    value: "01f175b94ff116d6b06fc944ca327432"
+  - name: GENIE_SPACE_ID
+    value: "01f175badff718e583cec35283ec31ee"
+  - name: SCHEMA_FQN
+    value: "ytcy_azure_east2classic_stable.digital_thread"
