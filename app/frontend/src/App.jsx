@@ -5,8 +5,10 @@ import LtvTab from './tabs/LtvTab.jsx'
 import ThreadTab from './tabs/ThreadTab.jsx'
 import GenieTab from './tabs/GenieTab.jsx'
 import GovernanceTab from './tabs/GovernanceTab.jsx'
+import DemoFlowTab from './tabs/DemoFlowTab.jsx'
 
 const TABS = [
+  { id: 'flow', label: '🗺️ デモの流れ' },
   { id: 'lifecycle', label: '📈 製品ライフサイクル分析' },
   { id: 'ltv', label: '💰 収益性LTV予測' },
   { id: 'thread', label: '🌳 デジタルスレッド樹形図' },
@@ -15,7 +17,7 @@ const TABS = [
 ]
 
 export default function App() {
-  const [tab, setTab] = useState('lifecycle')
+  const [tab, setTab] = useState('flow')
   const [config, setConfig] = useState(null)
   const [products, setProducts] = useState([])
   const [error, setError] = useState(null)
@@ -44,6 +46,7 @@ export default function App() {
       <div className="page">
         {error && <div className="error">{error}</div>}
         {!config && !error && <div className="spinner">読み込み中...</div>}
+        {config && tab === 'flow' && <DemoFlowTab onNavigate={setTab} />}
         {config && tab === 'lifecycle' && <LifecycleTab config={config} products={products} />}
         {config && tab === 'ltv' && <LtvTab products={products} />}
         {config && tab === 'thread' && <ThreadTab products={products} />}

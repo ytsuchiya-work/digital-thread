@@ -9,6 +9,31 @@ const FOCUS = [
   { id: 'recent', label: '直近10ロット' },
 ]
 
+const LEGEND = [
+  { color: '#1b3139', fg: '#fff', label: '📦 製品', desc: 'トレースの起点' },
+  { color: '#b3d4fc', label: '📐 設計リビジョン', desc: '設計変更(ECO)・工程変更など' },
+  { color: '#cdeacd', label: '🏭 製造ロット（歩留まり 88%以上）', desc: '正常' },
+  { color: '#fce8b2', label: '🏭 製造ロット（80〜88%）', desc: '要注意' },
+  { color: '#f8b4b4', label: '🏭 製造ロット（80%未満）', desc: '歩留まり異常' },
+  { color: '#e2d5f8', label: '🚚 出荷', desc: '出荷先地域 / 顧客' },
+  { color: '#fdd663', label: '⚠️ 市場不良（重大度 低・中）', desc: 'フィールドで発生した不具合' },
+  { color: '#f28b82', label: '⚠️ 市場不良（重大度 高）', desc: '重大なフィールド不具合' },
+]
+
+function Legend() {
+  return (
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px 16px', margin: '10px 0', fontSize: 12 }}>
+      {LEGEND.map((l) => (
+        <span key={l.label} style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }} title={l.desc}>
+          <span style={{ width: 14, height: 14, borderRadius: 4, background: l.color,
+                         border: '1px solid rgba(0,0,0,.15)', display: 'inline-block' }} />
+          {l.label}
+        </span>
+      ))}
+    </div>
+  )
+}
+
 const nodeStyle = (bg, fg = '#1b3139') => ({
   background: bg, color: fg, border: '1px solid rgba(0,0,0,.15)',
   borderRadius: 8, padding: '8px 10px', fontSize: 11.5, width: 190,
@@ -106,6 +131,7 @@ export default function ThreadTab({ products }) {
           </label>
         ))}
       </div>
+      <Legend />
       {error && <div className="error">{error}</div>}
       {!data && !error && <div className="spinner">トレーサビリティを検索中...</div>}
       {data && data.rows.length === 0 && (
